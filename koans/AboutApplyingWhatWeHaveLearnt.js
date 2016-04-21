@@ -152,17 +152,50 @@ describe("About Applying What We Have Learnt", function() {
     return result;
   });
 
+
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
-      
-    
+    //Too Slow
+    var start = 21; //passes on 232792560, takes over 2 seconds to reach
+    function isDivisible1_20(num){
+      for(var i=20; i>=1; i--){
+        if(num%i !== 0){
+          return false 
+        }
+      }
+      return true;
+    }
+    while(!isDivisible1_20(start)){
+      start++;
+    }
+    return start;
   });
-/*
-  it("should find the difference between the sum of the squares and the square of the sums", function () {
+
+  it("should find the difference between the sum of the squares and the square of the sums", function (num1, num2) {
     
+    var sumOfTheSquares = Math.pow(num1, 2) + Math.pow(num2, 2);
+    var squareOfTheSums = Math.pow((num1 + num2), 2);
+  
+    return sumOfTheSquares - squareOfTheSums;
   });
 
   it("should find the 10001st prime", function () {
-
+    //WAY Too Slow
+    var primes = [];
+    var start = 2;
+    function isPrime(num){
+      for(var i=num-1; i>=2; i--){
+        if(num % i !== 0){
+          return false; 
+        }
+      }
+      return true;
+    }
+    while(primes.length < 10001){
+      if(isPrime(start))
+        primes.push(start);
+      start++;
+    }
+    return primes[primes.length - 1];
   });
-*/
+
 });
