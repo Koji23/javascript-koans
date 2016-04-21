@@ -123,16 +123,40 @@ describe("About Applying What We Have Learnt", function() {
     }
     return primeNum;
   });
-  /*
-  it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
-    
+  
+  it("should find the largest palindrome made from the product of two 3 digit numbers", function (num1, num2) {
+    var result;
+    var product = String(num1 * num2).split("");
+    var histogram = product.reduce(function(combine, item){
+      combine[item] = (combine[item] || 0) + 1;
+      return combine;
+    }, {});
+    var biggestSingle;
+    for(var i in histogram){
+      if(histogram[i] === 1){
+        if(biggestSingle === undefined || i > biggestSingle){
+        biggestSingle = i; 
+        } 
+        delete histogram[i];
+      }
+    }
+    biggestSingle = String(biggestSingle);
+    var doubles = Object.keys(histogram).sort(function(a,b){
+      return b - a;
+    });
+    result = doubles[0];
+    for(var k=1; k<doubles.length; k++){
+      result += doubles[k]; 
+    }
+    result = result + biggestSingle + result.split("").reverse().join("");
+    return result;
   });
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
       
     
   });
-
+/*
   it("should find the difference between the sum of the squares and the square of the sums", function () {
     
   });
