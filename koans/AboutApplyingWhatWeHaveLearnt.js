@@ -5,7 +5,7 @@ describe("About Applying What We Have Learnt", function() {
 
   beforeEach(function () { 
     products = [
-       { name: "Sonoma", ingredients: ["artichoke", "sundried tomatoes", "mushrooms"], containsNuts: false },
+       { name: "Sonoma", ingredients: ["artichoke", "sundried   tomatoes", "mushrooms"], containsNuts: false },
        { name: "Pizza Primavera", ingredients: ["roma", "sundried tomatoes", "goats cheese", "rosemary"], containsNuts: false },
        { name: "South Of The Border", ingredients: ["black beans", "jalapenos", "mushrooms"], containsNuts: false },
        { name: "Blue Moon", ingredients: ["blue cheese", "garlic", "walnuts"], containsNuts: true },
@@ -81,15 +81,25 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
-    var ingredientCount = { "{ingredient name}": 0 };
+    var ingredientCount = _.chain(products)
+                            .map(function(pizza){return pizza.ingredients})
+                            .flatten()
+                            .reduce(function(memo, item){
+                              if(item in memo){
+                                memo[item]++;
+                              } else {
+                                memo[item] = 1;
+                              }
+                              return memo;
+                            }, { "{ingredient name}": 0 });
 
     /* chain() together map(), flatten() and reduce() */
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount["_wrapped"]['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
