@@ -95,20 +95,35 @@ describe("About Applying What We Have Learnt", function() {
                                 memo[item] = 1;
                               }
                               return memo;
-                            }, { "{ingredient name}": 0 });
+                            }, { "{ingredient name}": 0 })
+                            .value();
 
     /* chain() together map(), flatten() and reduce() */
 
-    expect(ingredientCount["_wrapped"]['mushrooms']).toBe(2);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
   /* UNCOMMENT FOR ADVANCED */
-  /*
-  it("should find the largest prime factor of a composite number", function () {
-  
+ 
+  it("should find the largest prime factor of a composite number", function (compNum) {
+    var primeNum = 1;
+    function isPrime(num){
+      for(var i=2; i<num; i++){
+        if(num%i === 0){
+          return false
+        }
+      }
+      return true;
+    }
+    for(var j=2; j<compNum; j++){
+      if(isPrime(j) && (compNum%j === 0) ){
+        primeNum = j;
+      }
+    }
+    return primeNum;
   });
-
+  /*
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
     
   });
@@ -125,5 +140,5 @@ describe("About Applying What We Have Learnt", function() {
   it("should find the 10001st prime", function () {
 
   });
-  */
+*/
 });
