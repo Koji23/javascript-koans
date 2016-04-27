@@ -179,12 +179,11 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the 10001st prime", function () {
-    //WAY Too Slow
     var primes = [];
-    var start = 2;
+    var start = 4; // solves on 104761 
     function isPrime(num){
-      for(var i=num-1; i>=2; i--){
-        if(num % i !== 0){
+      for(var i=2; i<num; i++){  //starting from 2 instead of num-1...saves years
+        if(num % i === 0){
           return false; 
         }
       }
@@ -195,7 +194,7 @@ describe("About Applying What We Have Learnt", function() {
         primes.push(start);
       start++;
     }
-    return primes[primes.length - 1];
+    return primes[primes.length - 1];  //current 5.6 seconds
   });
 
 });
