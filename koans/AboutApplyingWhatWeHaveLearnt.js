@@ -155,9 +155,9 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
     //Too Slow
-    var start = 21; //passes on 232792560, takes over 2 seconds to reach
+    var start = 20; //passes on 232792560, takes over 2 seconds to reach
     function isDivisible1_20(num){
-      for(var i=20; i>=1; i--){
+      for(var i=20; i>=2; i--){  //start checking backwards from 20, end in 2
         if(num%i !== 0){
           return false 
         }
@@ -165,7 +165,7 @@ describe("About Applying What We Have Learnt", function() {
       return true;
     }
     while(!isDivisible1_20(start)){
-      start++;
+      start += 10;  //a number divisible by 10 must always end in 0
     }
     return start;
   });
